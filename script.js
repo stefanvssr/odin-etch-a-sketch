@@ -1,5 +1,6 @@
 const gridContainer = document.querySelector(".container");
 const createGridItem = document.createElement("div");
+createGridItem.classList.add("grid-item");
 let gridXY = 16;
 
 function calcGrid() {
