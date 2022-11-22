@@ -1,4 +1,5 @@
 const gridContainer = document.querySelector(".container");
+const gridSizeButton = document.querySelector("button");
 const gridItem = document.createElement("div");
 gridItem.classList.add("grid-item");
 let gridXY = 16;
@@ -7,6 +8,8 @@ let gridXY = 16;
 // Otherwise we can't target dynamically items.
 // This is because of event delegation.
 gridContainer.addEventListener("mouseover", hoverItem);
+
+gridSizeButton.addEventListener("click", changeGridSize);
 
 function calcGrid() {
     return gridXY * gridXY;
@@ -28,6 +31,15 @@ function hoverItem(e) {
     if(e.target.classList.contains('grid-item')) {
         e.target.style.backgroundColor = "#000000";
     }
+}
+
+function changeGridSize() {
+    let userGridSize = prompt("What size of grid do you want?");
+
+    gridXY = userGridSize;
+    gridContainer.style.gridTemplateColumns = `repeat(${userGridSize}, minmax(0, 1fr))`;
+
+    createGrid();
 }
 
 createGrid();
