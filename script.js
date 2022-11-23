@@ -34,12 +34,19 @@ function hoverItem(e) {
 }
 
 function changeGridSize() {
-    let userGridSize = prompt("What size of grid do you want?");
+    let userGridSize = prompt("What size of grid do you want? (min 1, max 100)");
+    const minGridSize = 1;
+    const maxGridSize = 100;
 
-    gridXY = userGridSize;
-    gridContainer.style.gridTemplateColumns = `repeat(${userGridSize}, minmax(0, 1fr))`;
+    gridXY = Math.round(userGridSize);
 
-    createGrid();
+    if(gridXY >= 1 && gridXY <= 100) {
+        gridContainer.style.gridTemplateColumns = `repeat(${userGridSize}, minmax(0, 1fr))`;
+
+        createGrid();
+    } else {
+        alert("Error! Your input was not a number or not between 1 and 100");
+    }
 }
 
 createGrid();
